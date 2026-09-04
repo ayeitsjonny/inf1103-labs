@@ -29,3 +29,6 @@ print("====================")
 print("Username:", username)
 print("Age:", age)
 print("Content Category:", category)
+
+if age>20 and category=="technology": # Activity 5
+    print("You are eligible to create a tech content profile.")
