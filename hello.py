@@ -1,9 +1,10 @@
-username = input("jonnyboy")
-age = input("22")
-category = input("Technology")
+username = input("Enter Username: ")
+age = int(input("Enter Age: "))
+category = input("Enter Content Category: ")
 
 print("\nInstagram Profile")
 print("==================")
 print("Username:", username)
 print("Age:", age)
 print("Category:", category)
+
