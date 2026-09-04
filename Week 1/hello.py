@@ -7,6 +7,15 @@ username = "jonnyboy" # Activity 2
 bio = "I am a software developer and I love coding."
 followers = 150
 
+followers += 50 # Activity 3
+print("Day 1:", followers)
+
+followers += 20 
+print("Day 2:", followers)
+
+followers += 10 
+print("Day 3:", followers)
+
 print("Username:", username)
 print("Bio:", bio)
 print("Followers:", followers)
