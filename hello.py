@@ -8,3 +8,5 @@ print("Username:", username)
 print("Age:", age)
 print("Category:", category)
 
+if age>20 and category == "fashion":
+    print("You are eligible for fashion content.")
