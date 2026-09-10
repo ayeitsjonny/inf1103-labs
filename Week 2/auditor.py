@@ -21,5 +21,9 @@ while True: #2. Loop until user types "quit"
 
     total_inventory += quantity #6. Keep a running total
 
+    if total_inventory > 500: #7. Overstock alert
+        print("ALERT: Overstock! Inventory exceeds 500 units.")
+        break
+
 
 
