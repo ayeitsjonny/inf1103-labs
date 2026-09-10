@@ -6,3 +6,9 @@ while True: #2. Loop until user types "quit"
     
     if user_input == "quit":
         break
+
+    if not user_input.isdigit(): #3 & 4. Accept integers, reject invalid strings
+        print("Error: please enter a valid number.")
+        failed_entries += 1
+        continue
+
