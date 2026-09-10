@@ -19,4 +19,7 @@ while True: #2. Loop until user types "quit"
         failed_entries += 1
         continue
 
+    total_inventory += quantity #6. Keep a running total
+
+
 
