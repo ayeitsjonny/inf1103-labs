@@ -25,5 +25,8 @@ while True: #2. Loop until user types "quit"
         print("ALERT: Overstock! Inventory exceeds 500 units.")
         break
 
+    print(f"Total Units Processed: {total_inventory}") #8. Final report
+print(f"Number of Failed/Rejected Entries: {failed_entries}")
+
 
 
