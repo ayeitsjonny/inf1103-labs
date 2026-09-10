@@ -12,3 +12,11 @@ while True: #2. Loop until user types "quit"
         failed_entries += 1
         continue
 
+    quantity = int(user_input) #5. Reject negative numbers
+    
+    if quantity < 0:
+        print("Error: negative values not allowed.")
+        failed_entries += 1
+        continue
+
+
