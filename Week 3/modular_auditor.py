@@ -20,4 +20,14 @@ def get_valid_input():
         print("  -> Invalid entry: quantity cannot be negative. Try again.")
         return None, "invalid"
 
-    return value, "ok"    
+    return value, "ok"  
+
+    while True:  # 2. Continuous loop until 'quit'
+        value, status = get_valid_input()
+
+        if status == "quit":
+            break
+
+        if status == "invalid":
+            failed_attempts += 1
+            continue  
