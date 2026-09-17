@@ -7,6 +7,8 @@ def main():
         if status == "invalid":
             continue
         running_total = process_delivery(running_total, value)
+        tax = calculate_tax(value)
+        total_tax_collected += tax
 
 if __name__ == "__main__":
     main()
@@ -41,3 +43,6 @@ def get_valid_input():
 
 def process_delivery(current_total, new_value):
     return current_total + new_value
+
+def calculate_tax(amount):
+    return amount * 0.10
