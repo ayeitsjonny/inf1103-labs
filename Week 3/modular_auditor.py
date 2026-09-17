@@ -1,5 +1,12 @@
 def main():
     running_total = 0        # 1. Initialize inventory to zero
+    while True:
+        value, status = get_valid_input()
+        if status == "quit":
+            break
+        if status == "invalid":
+            continue
+        running_total = process_delivery(running_total, value)
 
 if __name__ == "__main__":
     main()
@@ -31,3 +38,6 @@ def get_valid_input():
         if status == "invalid":
             failed_attempts += 1
             continue  
+
+def process_delivery(current_total, new_value):
+    return current_total + new_value
