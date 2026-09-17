@@ -1,22 +1,3 @@
-def main():
-    running_total = 0        # 1. Initialize inventory to zero
-    while True:
-        value, status = get_valid_input()
-        if status == "quit":
-            break
-        if status == "invalid":
-            continue
-        running_total = process_delivery(running_total, value)
-        tax = calculate_tax(value)
-        total_tax_collected += tax
-        deliveries_processed += 1
-    generate_report(deliveries_processed, failed_attempts)
-    print(f"Total Units in Inventory: {running_total}")
-    print(f"Total Tax Collected: {total_tax_collected:.2f}")
-
-if __name__ == "__main__":
-    main()
-
 def get_valid_input():
     raw = input("Enter stock quantity (or 'quit' to finish): ").strip()
 
@@ -33,9 +14,31 @@ def get_valid_input():
         print("  -> Invalid entry: quantity cannot be negative. Try again.")
         return None, "invalid"
 
-    return value, "ok"  
+    return value, "ok"
 
-    while True:  # 2. Continuous loop until 'quit'
+
+def process_delivery(current_total, new_value):
+    return current_total + new_value
+
+
+def calculate_tax(amount):
+    return amount * 0.10
+
+
+def generate_report(total_units, failed_attempts):
+    print("\n----- FINAL REPORT -----")
+    print(f"Total Deliveries Processed: {total_units}")
+    print(f"Number of Failed/Rejected Entries: {failed_attempts}")
+    print("-------------------------")
+
+
+def main():
+    running_total = 0
+    deliveries_processed = 0
+    failed_attempts = 0
+    total_tax_collected = 0.0
+
+    while True:
         value, status = get_valid_input()
 
         if status == "quit":
@@ -43,16 +46,17 @@ def get_valid_input():
 
         if status == "invalid":
             failed_attempts += 1
-            continue  
+            continue
 
-def process_delivery(current_total, new_value):
-    return current_total + new_value
+        running_total = process_delivery(running_total, value)
+        tax = calculate_tax(value)
+        total_tax_collected += tax
+        deliveries_processed += 1
 
-def calculate_tax(amount):
-    return amount * 0.10
+    generate_report(deliveries_processed, failed_attempts)
+    print(f"Total Units in Inventory: {running_total}")
+    print(f"Total Tax Collected: {total_tax_collected:.2f}")
 
-def generate_report(total_units, failed_attempts):
-    print("\n----- FINAL REPORT -----")
-    print(f"Total Deliveries Processed: {total_units}")
-    print(f"Number of Failed/Rejected Entries: {failed_attempts}")
-    print("-------------------------")
+
+if __name__ == "__main__":
+    main()
