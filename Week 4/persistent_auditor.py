@@ -101,3 +101,15 @@ def main():
  
         print(f"  -> Delivery accepted: {value} units | Tax: {tax:.2f} | "
               f"Running Total: {running_total}")
+
+
+    save_inventory(INVENTORY_FILE, running_total, history)
+    print(f"\nInventory saved to {INVENTORY_FILE}")
+ 
+    generate_report(deliveries_processed, failed_attempts)
+    print(f"Total Units in Inventory: {running_total}")
+    print(f"Total Tax Collected This Session: {total_tax_collected:.2f}")
+ 
+ 
+if __name__ == "__main__":
+    main()
