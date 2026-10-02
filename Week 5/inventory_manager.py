@@ -1,6 +1,7 @@
 # inventory_manager.py
 # Inventory Management System
 
+from fileinput import filename
 import json
 import os
 
@@ -14,3 +15,24 @@ DEFAULT_INVENTORY = [
 
 if __name__ == "__main__":
     print(DEFAULT_INVENTORY)
+
+def load_inventory(filename):
+    """Loads inventory from a JSON file.
+    If the file exists, loads and returns its contents.
+    If it doesn't exist, starts with a default 3-product inventory
+    and does not raise an error.
+    """
+    if os.path.exists(filename):
+        print(f"{filename} found.")
+        with open(filename, "r") as f:
+            inventory = json.load(f)
+        print("Inventory loaded successfully.")
+        return inventory
+    else:
+        print(f"{filename} not found. Starting with a default inventory.")
+        return [item.copy() for item in DEFAULT_INVENTORY]
+
+
+if __name__ == "__main__":
+    inventory = load_inventory(INVENTORY_FILE)
+    print(inventory)
