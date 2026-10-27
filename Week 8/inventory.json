@@ -12,6 +12,12 @@
         "stock": 40
     },
     {
+        "product_id": "P003",
+        "name": "Cable",
+        "price": 10.0,
+        "stock": 7
+    },
+    {
         "product_id": "P004",
         "name": "Monitor",
         "price": 299.99,
