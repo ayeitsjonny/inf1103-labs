@@ -1,10 +1,19 @@
 import json
 import os
 
-from product import Product
 from inventory import Inventory
+from physical_product import PhysicalProduct
+from digital_product import DigitalProduct
+from subscription_product import SubscriptionProduct
 
 FILENAME = "inventory.json"
+
+# Maps the "type" identifier saved in JSON to the class that rebuilds it.
+PRODUCT_TYPES = {
+    "physical": PhysicalProduct,
+    "digital": DigitalProduct,
+    "subscription": SubscriptionProduct,
+}
 
 
 # ---------- File handling ----------
@@ -15,11 +24,17 @@ def load_inventory(inventory, filename=FILENAME):
     try:
         with open(filename, "r") as f:
             data = json.load(f)
+        loaded = 0
         for item in data:
-            inventory.add_product(Product(item["product_id"], item["name"],
-                                          item["price"], item["stock"]))
-        print(f"Loaded {len(data)} product(s) from {filename}.")
-    except (json.JSONDecodeError, KeyError, TypeError) as e:
+            product_class = PRODUCT_TYPES.get(item.get("type"))
+            if product_class is None:
+                print(f"Skipping {item.get('product_id')}: "
+                      f"unknown product type {item.get('type')!r}.")
+                continue
+            if inventory.add_product(product_class.from_dict(item)):
+                loaded += 1
+        print(f"Loaded {loaded} product(s) from {filename}.")
+    except (json.JSONDecodeError, KeyError, TypeError, ValueError) as e:
         print(f"Could not read {filename}: {e}")
 
 
@@ -42,18 +57,42 @@ def show_menu():
 
 
 def add_product_ui(inventory):
+    print("Product type: 1. Physical  2. Digital  3. Subscription")
+    type_choice = input("Choose type (1-3): ").strip()
+    if type_choice not in ("1", "2", "3"):
+        print("Invalid product type.")
+        return
+
     product_id = input("Product ID: ").strip()
     name = input("Name: ").strip()
     try:
         price = float(input("Price: "))
         stock = int(input("Stock: "))
+        if type_choice == "1":
+            weight = float(input("Weight (kg): "))
+        elif type_choice == "2":
+            download_size = float(input("Download size (MB): "))
+        else:
+            billing_months = int(input("Billing period (months): "))
     except ValueError:
         print("Invalid number entered.")
         return
     if price < 0 or not product_id or not name:
         print("Invalid product details.")
         return
-    product = Product(product_id, name, price, stock)
+
+    try:
+        if type_choice == "1":
+            product = PhysicalProduct(product_id, name, price, stock, weight)
+        elif type_choice == "2":
+            product = DigitalProduct(product_id, name, price, stock,
+                                     download_size)
+        else:
+            product = SubscriptionProduct(product_id, name, price, stock,
+                                          billing_months)
+    except ValueError as e:
+        print(f"Invalid product details: {e}")
+        return
     if inventory.add_product(product):
         print("Product added.")
 
