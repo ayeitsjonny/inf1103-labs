@@ -38,5 +38,13 @@
         "stock": 100,
         "type": "digital",
         "download_size": 350.0
+    },
+    {
+        "product_id": "P006",
+        "name": "Premium Support",
+        "price": 99.99,
+        "stock": 50,
+        "type": "subscription",
+        "billing_months": 12
     }
 ]
