@@ -1,0 +1,88 @@
+{
+    "suppliers": [
+        {
+            "supplier_id": "S001",
+            "name": "TechSource Pte Ltd",
+            "contact_email": "sales@techsource.sg"
+        },
+        {
+            "supplier_id": "S002",
+            "name": "SoftWorks Asia",
+            "contact_email": "orders@softworks.asia"
+        }
+    ],
+    "products": [
+        {
+            "product_id": "P001",
+            "name": "Laptop",
+            "price": 1200.0,
+            "stock": 15,
+            "type": "physical",
+            "weight": 2.2,
+            "supplier_id": "S001"
+        },
+        {
+            "product_id": "P002",
+            "name": "Mouse",
+            "price": 25.5,
+            "stock": 40,
+            "type": "physical",
+            "weight": 0.1,
+            "supplier_id": "S001"
+        },
+        {
+            "product_id": "P003",
+            "name": "Cable",
+            "price": 10.0,
+            "stock": 7,
+            "type": "physical",
+            "weight": 0.2,
+            "supplier_id": "S001"
+        },
+        {
+            "product_id": "P004",
+            "name": "Monitor",
+            "price": 299.99,
+            "stock": 7,
+            "type": "physical",
+            "weight": 4.5,
+            "supplier_id": "S001"
+        },
+        {
+            "product_id": "P005",
+            "name": "Antivirus",
+            "price": 49.9,
+            "stock": 100,
+            "type": "digital",
+            "download_size": 350.0,
+            "supplier_id": "S002"
+        },
+        {
+            "product_id": "P006",
+            "name": "Premium Support",
+            "price": 99.99,
+            "stock": 50,
+            "type": "subscription",
+            "billing_months": 12,
+            "supplier_id": "S002"
+        },
+        {
+            "product_id": "P007",
+            "name": "Keyboard",
+            "price": 79.9,
+            "stock": 25,
+            "type": "physical",
+            "weight": 0.8,
+            "supplier_id": "S001"
+        },
+        {
+            "product_id": "P008",
+            "name": "Photo Editor",
+            "price": 59.0,
+            "stock": 30,
+            "type": "digital",
+            "download_size": 800.0,
+            "supplier_id": "S002"
+        }
+    ]
+}
